@@ -1,6 +1,7 @@
 package sample
 
 import (
+	"math"
 	"math/rand"
 	"time"
 )
@@ -53,7 +54,7 @@ func (sh *sampleHeap) Result() []Weighted {
 }
 
 func (sh *sampleHeap) less(i, j int) bool {
-	return sh.h[i].s < sh.h[j].s
+	return sh.h[i].s < sh.h[j].s || math.IsNaN(sh.h[i].s) && !math.IsNaN(sh.h[j].s)
 }
 
 func (sh *sampleHeap) swap(i, j int) {
